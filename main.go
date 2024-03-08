@@ -20,10 +20,23 @@ var tasks = []Task{} // In-memory storage for tasks
 const Dport = ":8012"
 
 func main() {
+	http.HandleFunc("/", guideHandler)
 	http.HandleFunc("/tasks", tasksHandler)
 	http.HandleFunc("/task/", taskHandler)
 	fmt.Printf("Server is starting on port: %v\n", Dport) // Added newline for better terminal output
 	http.ListenAndServe(Dport, nil)
+}
+
+func guideHandler(w http.ResponseWriter, r *http.Request) {
+	guide := "First you have to download docker and install. make clone of repository and  run the command on localhost"
+
+	studentID := 500228108
+	githubRepository := "https://github.com/gurcharan9ss/goCRUD.git"
+
+	fmt.Printf(guide)
+	fmt.Println("Student ID: %v\n", studentID)
+	fmt.Println("Github Repo: %v\n", githubRepository)
+
 }
 
 // Handle requests to the /tasks endpoint
